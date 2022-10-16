@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
-def hello_holberton():
+def hello_school():
     """Returns a string at the root route"""
     return 'Hello HBNB!'
 
