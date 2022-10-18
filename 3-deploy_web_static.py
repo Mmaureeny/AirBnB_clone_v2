@@ -3,7 +3,7 @@
 import os
 from datetime import datetime
 from fabric.api import env, local, put, run, runs_once
-
+from os.path import exists, isdir
 
 
 env.hosts = ["3.239.58.144","100.24.126.136"]
@@ -60,3 +60,10 @@ def do_deploy(archive_path):
     except Exception:
         success = False
     return success
+
+
+def deploy():
+    """To Archives and deploys the static files to the host servers.
+    """
+    archive_path = do_pack()
+    return do_deploy(archive_path) if archive_path else False
