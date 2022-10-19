@@ -172,7 +172,7 @@ class TestBasemodel(unittest.TestCase):
         self.assertEqual(type(new.updated_at), datetime)
         n = new.to_dict()
         new = BaseModel(**n)
-        self.assertFalse(new.created_at == new.updated_at)
+        self.assertTrue(new.created_at == new.updated_at)
 
     @unittest.skipIf(
         os.getenv('HBNB_TYPE_STORAGE') == 'db', 'FileStorage test')
