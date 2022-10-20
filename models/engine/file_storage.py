@@ -32,7 +32,6 @@ class FileStorage:
 
         d = {key: value for key, value in self.__objects.items()
              if type(value) == cls}
-
         return d
 
     def new(self, obj):
