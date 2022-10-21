@@ -1,18 +1,21 @@
 #!/usr/bin/python3
 """This is the base model class for AirBnB"""
 import uuid
-import models
-import datetime
+from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String, Integer, DateTime
+from sqlalchemy import Column, String, DateTime
+from models import storage_type
 
 
 Base = declarative_base()
 
 
 class BaseModel:
-    """This class will defines all common attributes/methods
-    for other classes
+    """This is a base class for all hbnb models
+    Attributes:
+        id (sqlalchemy String): The BaseModel id.
+        created_at (sqlalchemy DateTime): The datetime at creation.
+        updated_at (sqlalchemy DateTime): The datetime of last update.
     """
     id = Column(String(60),
                 unique=True,
@@ -81,10 +84,12 @@ class BaseModel:
         my_dict["created_at"] = self.created_at.isoformat()
         my_dict["updated_at"] = self.updated_at.isoformat()
 
-        if "_sa_instance_state" in my_dict:
+        """if "_sa_instance_state" in my_dict:
             del my_dict["_sa_instance_state"]
         return my_dict
+        """
 
     def delete(self):
         """ Deletes current instance form models.storage """
-        models.storage.delete(self)
+        from models import storage
+        storage.delete(self)
