@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""A module for web application deployment with Fabric."""
+"""Fabric script based on the file 1-pack_web_static.py that distributes an
+archive to the web servers
+"""
 from os.path import exists
-from datetime import datetime
-from fabric.api import env, local, put, run, runs_once
+from fabric.api import put, run, env
 
 
 
