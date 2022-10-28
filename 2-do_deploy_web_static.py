@@ -6,7 +6,7 @@ from os.path import exists
 from fabric.api import put, run, env
 
 
-env.hosts = ["3.239.58.144","100.24.126.136"]
+env.hosts = ["3.239.58.144", "100.24.126.136"]
 env.user = 'ubuntu'
 """The list of host server IP addresses."""
 
@@ -27,6 +27,8 @@ def do_deploy(archive_path):
         run('rm -rf {}{}/web_static'.format(path, no_ext))
         run('rm -rf /data/web_static/current')
         run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
-        return True
-    except:
-        return False
+        print('New version deployed!')
+        success = True
+    except Exception:
+        success = False
+    return success
